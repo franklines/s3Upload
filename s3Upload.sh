@@ -91,7 +91,9 @@ $CANREQHASH
 EOF
 
 # Generate user's signing key.
-function hmac_sha256 {
+# Credit: Łukasz Adamczak (https://czak.pl/2015/09/15/s3-rest-api-with-curl.html)
+function hmac_sha256() 
+{
   key="$1"
   data="$2"
   echo -n "$data" | openssl dgst -sha256 -mac HMAC -macopt "$key" | sed 's/^.* //';
